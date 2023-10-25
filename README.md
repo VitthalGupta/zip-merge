@@ -63,6 +63,11 @@ Here's an example of how to run the script:
 python3 main.py --zip_dir /path/to/zip/files --target MyFiles --merge_dir /path/to/merge/directory --delete True
 ```
 
+## Tutorial
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/artpICnbxlA" frameborder="0" allowfullscreen></iframe>
+
+
 ## Troubleshooting
 
 - Ensure that the provided directory paths are correct and free of spaces.

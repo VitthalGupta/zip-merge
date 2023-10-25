@@ -2,7 +2,6 @@ import argparse
 import os
 import zipfile
 from tqdm import tqdm
-import os
 
 # Create an argument parser
 parser = argparse.ArgumentParser(
@@ -73,7 +72,7 @@ if not args.delete:
     # Delete the zip files if the delete option is True
     for file in discovered_files:
         zip_file_path = os.path.join(args.zip_dir, file)
-        # os.remove(zip_file_path)
+        os.remove(zip_file_path)
         print(f"Deleted {file}")
 
 # Print the total number of files extracted

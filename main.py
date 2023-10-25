@@ -36,18 +36,45 @@ if not os.path.exists(args.merge_dir):
     os.makedirs(args.merge_dir)
 
 # List all the files in the zip_dir
+discovered_files = []
 for root, dirs, files in os.walk(args.zip_dir):
     for file in files:
         if file.startswith(args.target) and file.endswith('.zip'):
-            zip_file_path = os.path.join(root, file)
-            count_files += 1
-            # Unzip the file to the merge directory with tqdm progress bar
-            with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
-                for file_info in tqdm(zip_ref.infolist(), desc=f'Extracting {file}'):
-                    zip_ref.extract(file_info, args.merge_dir)
-            if args.delete:
-                # Delete the zip file if the delete option is True
-                os.remove(zip_file_path)
+            discovered_files.append(file)
+
+# Display the list of discovered files
+print("Discovered files in the specified folder:")
+for i, file in enumerate(discovered_files, start=1):
+    print(f"{i}. {file}")
+
+print('Summary:')
+print(f'Files discovered {len(discovered_files)}')
+print('File types: .zip')
+
+# Ask the user to proceed
+proceed = input(
+    "Do you want to proceed with extracting these files? (y/n): ").strip().lower()
+if proceed != 'y':
+    print("Extraction aborted.")
+    exit(0)
+
+
+# Extract the selected files
+count_files = 0
+for file in discovered_files:
+    zip_file_path = os.path.join(args.zip_dir, file)
+    count_files += 1
+    # Unzip the file to the merge directory with tqdm progress bar
+    with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
+        for file_info in tqdm(zip_ref.infolist(), desc=f'Extracting {file}'):
+            zip_ref.extract(file_info, args.merge_dir)
+
+if not args.delete:
+    # Delete the zip files if the delete option is True
+    for file in discovered_files:
+        zip_file_path = os.path.join(args.zip_dir, file)
+        # os.remove(zip_file_path)
+        print(f"Deleted {file}")
 
 # Print the total number of files extracted
 print("Total number of files extracted: ", count_files)

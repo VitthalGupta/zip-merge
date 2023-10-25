@@ -65,7 +65,7 @@ python3 main.py --zip_dir /path/to/zip/files --target MyFiles --merge_dir /path/
 
 ## Tutorial
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/artpICnbxlA" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/artpICnbxlA?si=V89LkQ1j2bbFH6fn" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ></iframe>
 
 
 ## Troubleshooting

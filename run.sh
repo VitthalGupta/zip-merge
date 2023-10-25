@@ -60,6 +60,7 @@ read -p "Enter the path to the zip directory (--zip_dir): " zip_dir
 read -p "Enter the target ZIP initial name (--target): " target_folder_name
 read -p "Enter the path to the merge directory (--merge_dir): " merge_dir
 read -p "Do you want to delete the zip files after extraction?(True/False) (Default:False) " delete_zip_files
-# echo $merge_dir
+delete_zip_files=${delete_zip_files:-False}  # Default value if the user presses Enter
+
 # Run the main script with the provided parameters
-python3 main.py --zip_dir "$zip_dir" --target "$target_folder_name" --merge_dir "$merge_dir" --delete_zip_files "$delete_zip_files"
+python3 main.py --zip_dir "$zip_dir" --target "$target_folder_name" --merge_dir "$merge_dir" --delete "delete_zip_files"
